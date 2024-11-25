@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://biyfpi4e4cjnf"]
+
+[ext_resource type="Texture2D" uid="uid://5k8rltvhadbj" path="res://assets/cards/textures/pngegg.png" id="1_5rpmp"]
+[ext_resource type="Script" path="res://assets/cards/scripts/card_default.gd" id="1_ya4gb"]
+
+[node name="CardBlank" type="Node2D"]
+script = ExtResource("1_ya4gb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5rpmp")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
