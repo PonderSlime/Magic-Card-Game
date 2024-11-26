@@ -1,36 +1,39 @@
 extends Control
 
 @export var card_scene: PackedScene = preload("res://assets/cards/cards/card_blank.tscn")
-@export var card_count = 5
-@export var radius: float = 300.
-@export var min_angle_range: float = 45.
-@export var max_angle_range: float = 120.
-@export var max_card_count: int = 10
+@export var card_count = 5.
+@export var base_radius: float = 300.
+@export var min_angle_range: float = 5.
+@export var max_angle_range: float = 50
+@export var max_card_count: int = 10.
+@export var tightness: float = 1.
+@export var hand_offset: float = 75.
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var center = Vector2(size.x / 2, size.y)
-	var range_increase = (card_count - 1) / (max_card_count - 1)
-	var angle_range = lerp(min_angle_range, max_angle_range, range_increase)
+	print(size.x, ",", size.y)
+	var range_increase = (card_count - 1) / (max_card_count)
+	var radius = base_radius + (hand_offset * 2)
+	var angle_range = min_angle_range + (range_increase * 100)
+	#var angle_range = lerp(min_angle_range, max_angle_range, range_increase)
 	
 	angle_range = clamp(angle_range, min_angle_range, max_angle_range)
 	
 	var angle_step = deg_to_rad(angle_range) / (card_count - 1)
+	var adjusted_radius = radius * tightness
 	var start_angle = deg_to_rad(-angle_range / 2)
 	
 	var container = Node2D.new()
 	container.position = center
 	add_child(container)
 	
-	container.rotation = 0.	
-	container.rotation = deg_to_rad(-(angle_range /3) / 2)
-	
 	for i in range(card_count):
 		var card_instance = card_scene.instantiate()
 		container.add_child(card_instance)
 		
 		var angle = start_angle + i * angle_step
-		var target_position = center + Vector2(radius * sin(angle), - radius * cos(angle))
+		var target_position = center + Vector2((adjusted_radius * sin(angle)) * 5, ((- adjusted_radius * cos(angle)) + hand_offset))
 		var target_rotation_degrees = rad_to_deg(angle)
 		
 		card_instance.position = center

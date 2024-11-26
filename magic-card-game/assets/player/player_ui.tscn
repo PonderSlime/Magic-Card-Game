@@ -4,11 +4,13 @@
 
 [node name="CardHandUI" type="Control"]
 layout_mode = 3
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="CardContainer" type="Control" parent="."]
 layout_mode = 1
@@ -21,5 +23,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 script = ExtResource("1_lu8ei")
-card_count = 10
+card_count = 11.0
+hand_offset = -50.0
