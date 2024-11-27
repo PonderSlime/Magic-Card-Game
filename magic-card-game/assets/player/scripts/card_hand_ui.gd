@@ -9,14 +9,14 @@ extends Control
 @export var tightness: float = 1.
 @export var hand_offset: float = 75.
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_viewport().set_physics_object_picking_sort(true)
+	get_viewport().set_physics_object_picking_first_only(true)
 	var center = Vector2(size.x / 2, size.y)
 	print(size.x, ",", size.y)
 	var range_increase = (card_count - 1) / (max_card_count)
 	var radius = base_radius + (hand_offset * 2)
 	var angle_range = min_angle_range + (range_increase * 100)
-	#var angle_range = lerp(min_angle_range, max_angle_range, range_increase)
 	
 	angle_range = clamp(angle_range, min_angle_range, max_angle_range)
 	
@@ -42,10 +42,9 @@ func _ready() -> void:
 		var tween = create_tween()
 		tween.parallel().tween_property(card_instance, "position", target_position, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		tween.parallel().tween_property(card_instance, "rotation_degrees", target_rotation_degrees, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
 		
 		card_instance.z_index = i
-		card_instance.set_card_data("Card" + str(i + 1))
+		card_instance.set_card_data("Card" + str(i + 1), )
 		print("Card Position: ", target_position)
 		await get_tree().create_timer(0.2).timeout
 

@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://d38q36j88ykhh"]
+
+[ext_resource type="Script" path="res://assets/cards/globals/card_overlay.gd" id="1_5y07j"]
+[ext_resource type="Texture2D" uid="uid://5k8rltvhadbj" path="res://assets/cards/textures/pngegg.png" id="1_sy331"]
+
+[node name="CardOverlay" type="CanvasLayer"]
+script = ExtResource("1_5y07j")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "trfgdhjk
+"
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ControlCard" type="Control" parent="Control/CenterContainer"]
+layout_mode = 2
+
+[node name="Card" type="Sprite2D" parent="Control/CenterContainer/ControlCard"]
+texture = ExtResource("1_sy331")
+
+[connection signal="gui_input" from="Control" to="." method="_on_control_gui_input"]

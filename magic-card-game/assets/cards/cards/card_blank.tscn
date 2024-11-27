@@ -21,5 +21,6 @@ texture = ExtResource("1_5rpmp")
 offset_right = 40.0
 offset_bottom = 23.0
 
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
