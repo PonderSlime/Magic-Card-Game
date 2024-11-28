@@ -42,9 +42,11 @@ func show_with_animation():
 	tween.parallel().tween_property(texture_rect, "rotation", 0, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 func hide_with_animation():
+	texture_rect.rotation = 0
 	var tween = create_tween()
 	tween.parallel().tween_property(texture_rect, "scale", Vector2(cardsca, cardsca), 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(texture_rect, "global_position", cardpos, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(texture_rect, "rotation", cardrot, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	if texture_rect.rotation != 0:
+		tween.parallel().tween_property(texture_rect, "rotation", cardrot, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	await get_tree().create_timer(0.4).timeout
 	queue_free()
