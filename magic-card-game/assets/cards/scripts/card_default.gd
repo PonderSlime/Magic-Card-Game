@@ -7,6 +7,8 @@ extends Node2D
 @export var card_overlay: PackedScene = preload("res://assets/cards/globals/card_overlay.tscn")
 @onready var card = $Card
 @onready var card_label = $Card/Label
+@export var remove_threshold: float = 500.0
+var hand_container: Node = null
 
 var hover_scale = 0.
 var base_scale = 0.
@@ -21,6 +23,7 @@ var drag_offset = Vector2.ZERO
 
 @onready var area2d = self
 func _ready() -> void:
+	add_to_group("cards")
 	if card:
 		print("Card node found!")
 		hover_scale = card.scale * scale_diff
@@ -64,6 +67,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			has_dragged = false
 			drag_start_position = get_global_mouse_position()
 			drag_offset = global_position - drag_start_position
+			
 		elif Input.is_action_just_released("click"):
 			is_dragging = false
 			var distance_moved = drag_start_position.distance_to(get_global_mouse_position())
@@ -76,6 +80,9 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		var distance_moved = drag_start_position.distance_to(get_global_mouse_position())
 		global_position = get_global_mouse_position() + drag_offset
 		if distance_moved > drag_threshold:
+			hand_container.remove_card(self)
+			remove_from_group("hand")
+			hand_container.update_hand_layout()
 			var tween = create_tween()
 			tween.parallel().tween_property(area2d, "rotation", 0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 			has_dragged = true
