@@ -62,7 +62,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		if Input.is_action_just_pressed("click"):
 			is_dragging = true
 			has_dragged = false
-			drag_start_position = card.get_global_transform().origin
+			drag_start_position = get_global_mouse_position()
 			drag_offset = global_position - drag_start_position
 		elif Input.is_action_just_released("click"):
 			is_dragging = false

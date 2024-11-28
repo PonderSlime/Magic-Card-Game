@@ -25,5 +25,4 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_lu8ei")
-card_count = 11.0
 hand_offset = -50.0
