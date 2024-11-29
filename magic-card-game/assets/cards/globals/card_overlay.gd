@@ -37,7 +37,7 @@ func _on_control_gui_input(event: InputEvent):
 		
 func show_with_animation():
 	var tween = create_tween()
-	tween.parallel().tween_property(texture_rect, "scale", Vector2(1, 1), 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(texture_rect, "scale", Vector2(texture_rect.scale.x *2, texture_rect.scale.y *2,), 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(texture_rect, "position", Vector2(0,0), 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(texture_rect, "rotation", 0, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 

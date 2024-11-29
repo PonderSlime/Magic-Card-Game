@@ -1,6 +1,10 @@
 extends Control
 
-@export var card_scene: PackedScene = preload("res://assets/cards/cards/card_blank.tscn")
+@export var card_variations: Array = [
+	preload("res://assets/cards/cards/card_blank.tscn"),
+	preload("res://assets/cards/cards/card_fire.tscn")
+]
+
 @export var card_count = 5.
 @export var base_radius: float = 300.
 @export var min_angle_range: float = 5.
@@ -25,14 +29,20 @@ func _ready() -> void:
 
 	radius = base_radius + (hand_offset * 2)
 	for i in card_count:
-		add_new_card(card_scene)
+		add_new_card()
 func _process(delta: float) -> void:
 	update_snap_zone()
-func add_new_card(card_scene: PackedScene):
+	
+func get_random_card_scene() -> PackedScene:
+	return card_variations[randi() % card_variations.size()]
+	
+func add_new_card():
+	var card_scene = get_random_card_scene()
 	var card_instance = card_scene.instantiate()
 	card_instance.position = Vector2.ZERO
 	card_instance.rotation_degrees = 0
 	card_instance.scale = Vector2.ZERO
+	card_instance.modulate = Color(0,0,0,0)
 	add_card(card_instance)
 	card_instance.add_to_group("hand")
 	
@@ -55,7 +65,7 @@ func remove_card(card: Node2D):
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
-		add_new_card(card_scene)
+		add_new_card()
 
 func update_hand_layout():
 	var range_increase = float(cards.size()) / float(max_card_count)
@@ -80,7 +90,7 @@ func update_hand_layout():
 		tween.parallel().tween_property(card, "rotation_degrees", target_rotation_degrees, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		
 		card.z_index = i
-		card.set_card_data("Card" + str(i + 1), )
+		card.set_card_data("Card",) #+ str(i + 1), )
 		print("Card Position: ", target_position)
 
 func update_snap_zone():

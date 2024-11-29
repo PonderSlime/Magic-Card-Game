@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://biyfpi4e4cjnf"]
+[gd_scene load_steps=4 format=3 uid="uid://dtcfscxl5506k"]
 
-[ext_resource type="Script" path="res://assets/cards/scripts/card_default.gd" id="1_ya4gb"]
-[ext_resource type="Texture2D" uid="uid://brgywidi7ps0q" path="res://assets/cards/textures/sprites/blank-card.png" id="2_eywwk"]
+[ext_resource type="Script" path="res://assets/cards/scripts/card_default.gd" id="1_4pxiy"]
+[ext_resource type="Texture2D" uid="uid://c6sik056mykgj" path="res://assets/cards/textures/sprites/fire-card.png" id="2_aaq6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_li0w5"]
 size = Vector2(280, 362.5)
 
-[node name="CardBlank" type="Area2D"]
-script = ExtResource("1_ya4gb")
+[node name="CardFire" type="Area2D"]
+script = ExtResource("1_4pxiy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_li0w5")
 debug_color = Color(0, 0.6, 0.701961, 0.811765)
 
 [node name="Card" type="Sprite2D" parent="."]
-texture = ExtResource("2_eywwk")
+texture = ExtResource("2_aaq6m")
 
 [node name="Label" type="Label" parent="Card"]
 anchors_preset = 15

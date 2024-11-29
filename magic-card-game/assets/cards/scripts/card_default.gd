@@ -21,6 +21,8 @@ var drag_threshold = 20
 var drag_start_position = Vector2.ZERO
 var drag_offset = Vector2.ZERO
 
+var selected_hand: Array = []
+
 @onready var area2d = self
 func _ready() -> void:
 	add_to_group("cards")
