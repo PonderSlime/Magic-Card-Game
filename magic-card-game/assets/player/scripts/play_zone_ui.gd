@@ -24,7 +24,7 @@ func add_card(card: Node2D) -> void:
 	var card_data: CardData = card.get_meta("card_data")
 	for cardn in Globals.selected_hand:
 		if cardn["data_name"] == card_data.data_name:
-			SignalBus.card_played.emit(card_data)
+			SignalBus.card_played.emit(card_data, "player")
 			var tween = create_tween()
 			tween.tween_property(card, "scale", Vector2.ZERO, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 			tween.parallel().tween_property(card, "modulate", Color(0,0,0,0), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)

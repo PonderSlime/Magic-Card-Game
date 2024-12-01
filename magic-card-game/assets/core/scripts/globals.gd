@@ -9,7 +9,7 @@ var all_cards: Array = [
 	{"scene_path": "res://assets/cards/cards/card_blank.tscn", "name": "Default Card", "data_name": "default_card", "texture_name": "blank-card", "description": "default card"},
 	{"scene_path": "res://assets/cards/cards/card_fire.tscn", "name": "Fire Card", "data_name": "fire_card", "texture_name": "fire-card", "description": "basic fire card"},
 ]
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	var saveFile = FileAccess.open("user://selected_cards.save", FileAccess.READ)
 	if(FileAccess.get_open_error() != OK):

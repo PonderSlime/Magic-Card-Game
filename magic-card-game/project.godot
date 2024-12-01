@@ -16,8 +16,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://assets/player/scripts/globals.gd"
-SignalBus="*res://assets/player/scripts/signal_bus.gd"
+Globals="*res://assets/core/scripts/globals.gd"
+SignalBus="*res://assets/core/scripts/signal_bus.gd"
+Opponent="*res://assets/core/scripts/opponent.gd"
+Player="*res://assets/core/scripts/player.gd"
 
 [display]
 
