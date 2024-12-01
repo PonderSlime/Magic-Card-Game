@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://yt1s5nj322wv"]
+[gd_scene load_steps=10 format=3 uid="uid://yt1s5nj322wv"]
 
+[ext_resource type="Script" path="res://assets/player/scripts/played_cards_controller.gd" id="1_11a3g"]
 [ext_resource type="Script" path="res://assets/player/scripts/card_hand_ui.gd" id="1_lu8ei"]
 [ext_resource type="Script" path="res://assets/player/scripts/snap_zone.gd" id="2_ipq15"]
 [ext_resource type="Script" path="res://assets/player/scripts/play_zone_ui.gd" id="3_67ldf"]
@@ -15,7 +16,7 @@ size = Vector2(2560, 400)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l76p3"]
 size = Vector2(280, 362.5)
 
-[node name="PlayerUI" type="Control"]
+[node name="PlayerUI" type="Control" node_paths=PackedStringArray("play_zone")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +24,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_11a3g")
+play_zone = NodePath("PlayZoneUI/Area2D")
 
 [node name="CardHandUI" type="Control" parent="."]
 layout_mode = 1

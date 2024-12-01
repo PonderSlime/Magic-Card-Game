@@ -27,7 +27,6 @@ var selected_hand: Array = []
 func _ready() -> void:
 	add_to_group("cards")
 	if card:
-		print("Card node found!")
 		hover_scale = card.scale * scale_diff
 		base_scale = card.scale
 	else:

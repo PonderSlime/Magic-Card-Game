@@ -22,7 +22,6 @@ func check_collisions() -> void:
 				
 func snap_card(card: Node) -> void:
 	snap_group.append(card)
-	print("Card entered snap zone", card.name)
 	if hand_container:
 		hand_container.add_card(card)
 		card.add_to_group(group_name)

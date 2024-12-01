@@ -9,7 +9,6 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		if Input.is_action_just_pressed("click"):
 			if Globals.card_count < Globals.max_card_count:
 				card_container.add_new_card(parent.position)
-				print("global pos: ", parent.global_position)
 			else:
 				wiggle_deck()
 

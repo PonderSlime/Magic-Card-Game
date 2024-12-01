@@ -6,7 +6,7 @@ extends Control
 @export var base_snap_zone_height: float = 400
 @export var snap_zone_padding: float = 20
 
-signal card_played(card_name: String)
+var card_name: String
 
 var cards: Array = []
 # Called when the node enters the scene tree for the first time.
@@ -20,10 +20,18 @@ func _ready() -> void:
 
 func add_card(card: Node2D) -> void:
 	cards.append(card)
-	var tween = create_tween()
-	tween.tween_property(card, "scale", Vector2.ZERO, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(card, "modulate", Color(0,0,0,0), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	await get_tree().create_timer(0.3).timeout
-	print(card.name, " goes poof")
-	emit_signal("card_played", card.name)
-	card.queue_free()
+	
+	var card_data: CardData = card.get_meta("card_data")
+	for cardn in Globals.selected_hand:
+		if cardn["data_name"] == card_data.data_name:
+			SignalBus.card_played.emit(card_data)
+			var tween = create_tween()
+			tween.tween_property(card, "scale", Vector2.ZERO, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			tween.parallel().tween_property(card, "modulate", Color(0,0,0,0), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			await get_tree().create_timer(0.3).timeout
+			card.queue_free()
+			return
+	print("Error: Card data not found for:", card_data.data_name)
+	#emit_signal("card_played", card.name)
+	
+	

@@ -1,6 +1,5 @@
 extends Control
 
-@export var selected_hand: Array = []
 var start_card_count = Globals.start_card_count
 @export var base_radius: float = 300.
 @export var min_angle_range: float = 5.
@@ -45,19 +44,24 @@ func load_selected_cards():
 			continue
 			
 		var node_data = json.get_data()
-		selected_hand.append(node_data)
-			
-	print(selected_hand)
+		Globals.selected_hand.append(node_data)
 	
-func get_random_card_scene() -> PackedScene:
-	
-	var random_card = selected_hand[randi() % selected_hand.size()]
-	
-	return load(random_card["scene_path"])
+func get_random_card() -> CardData:
+	if Globals.selected_hand.size() == 0:
+		print("No cards available in the selected hand!")
+		return null  # Or an empty dictionary: {}
+	var random_index = randi() % Globals.selected_hand.size()
+	var card_data = Globals.selected_hand[random_index]
+	return CardData.new(card_data["name"], card_data["data_name"],card_data["scene_path"], 2, card_data["description"])
 	
 func add_new_card(position: Vector2):
-	var card_scene = get_random_card_scene()
+	var card_data = get_random_card()
+	if card_data == null:
+		print("No card was retrieved.")
+	var card_scene = load(card_data.scene_path)
+	var card_name = card_data.name
 	var card_instance = card_scene.instantiate()
+	card_instance.set_meta("card_data", card_data)
 	card_instance.position = position
 	card_instance.rotation_degrees = 0
 	card_instance.scale = Vector2.ZERO
@@ -108,7 +112,6 @@ func update_hand_layout():
 		
 		card.z_index = i
 		card.set_card_data("Card",) #+ str(i + 1), )
-		print("Card Position: ", target_position)
 
 func update_snap_zone():
 	if not snap_zone:
