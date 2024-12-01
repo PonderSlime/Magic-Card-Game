@@ -6,6 +6,8 @@ extends Control
 @export var base_snap_zone_height: float = 400
 @export var snap_zone_padding: float = 20
 
+signal card_played(card_name: String)
+
 var cards: Array = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
@@ -15,15 +17,13 @@ func _ready() -> void:
 	if snap_zone_shape is RectangleShape2D:
 		snap_zone_shape.extents = Vector2(play_area_width / 2, play_area_height / 2)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
+
 func add_card(card: Node2D) -> void:
 	cards.append(card)
 	var tween = create_tween()
 	tween.tween_property(card, "scale", Vector2.ZERO, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(card, "modulate", Color(0,0,0,0), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	await get_tree().create_timer(0.3).timeout
+	print(card.name, " goes poof")
+	emit_signal("card_played", card.name)
 	card.queue_free()
-	

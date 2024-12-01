@@ -1,15 +1,11 @@
 extends Control
 
-@export var card_variations: Array = [
-	preload("res://assets/cards/cards/card_blank.tscn"),
-	preload("res://assets/cards/cards/card_fire.tscn")
-]
-
-@export var card_count = 5.
+@export var selected_hand: Array = []
+var start_card_count = Globals.start_card_count
 @export var base_radius: float = 300.
 @export var min_angle_range: float = 5.
 @export var max_angle_range: float = 50
-@export var max_card_count: int = 10.
+var max_card_count = Globals.max_card_count
 @export var tightness: float = 1.
 @export var hand_offset: float = 75.
 
@@ -26,20 +22,43 @@ var radius
 func _ready() -> void:
 	get_viewport().set_physics_object_picking_sort(true)
 	get_viewport().set_physics_object_picking_first_only(true)
-
+	
+	load_selected_cards()
+	
 	radius = base_radius + (hand_offset * 2)
-	for i in card_count:
-		add_new_card()
+	for i in start_card_count:
+		add_new_card(Vector2.ZERO)
 func _process(delta: float) -> void:
 	update_snap_zone()
 	
-func get_random_card_scene() -> PackedScene:
-	return card_variations[randi() % card_variations.size()]
+func load_selected_cards():
+	var saveFile = FileAccess.open("user://selected_cards.save", FileAccess.READ)
+	if(FileAccess.get_open_error() != OK):
+		return false
+	while saveFile.get_position() < saveFile.get_length():
+		var json_string = saveFile.get_line()
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+			
+		var node_data = json.get_data()
+		selected_hand.append(node_data)
+			
+	print(selected_hand)
 	
-func add_new_card():
+func get_random_card_scene() -> PackedScene:
+	
+	var random_card = selected_hand[randi() % selected_hand.size()]
+	
+	return load(random_card["scene_path"])
+	
+func add_new_card(position: Vector2):
 	var card_scene = get_random_card_scene()
 	var card_instance = card_scene.instantiate()
-	card_instance.position = Vector2.ZERO
+	card_instance.position = position
 	card_instance.rotation_degrees = 0
 	card_instance.scale = Vector2.ZERO
 	card_instance.modulate = Color(0,0,0,0)
@@ -56,16 +75,14 @@ func add_card(card: Node2D):
 	await get_tree().create_timer(0.1).timeout
 	update_hand_layout()
 	update_snap_zone()
+	Globals.card_count += 1
 	
 func remove_card(card: Node2D):
 	if card in cards:
 		cards.erase(card)
 		update_hand_layout()
 		update_snap_zone()
-
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		add_new_card()
+		Globals.card_count -= 1
 
 func update_hand_layout():
 	var range_increase = float(cards.size()) / float(max_card_count)

@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://yt1s5nj322wv"]
+[gd_scene load_steps=9 format=3 uid="uid://yt1s5nj322wv"]
 
 [ext_resource type="Script" path="res://assets/player/scripts/card_hand_ui.gd" id="1_lu8ei"]
 [ext_resource type="Script" path="res://assets/player/scripts/snap_zone.gd" id="2_ipq15"]
 [ext_resource type="Script" path="res://assets/player/scripts/play_zone_ui.gd" id="3_67ldf"]
+[ext_resource type="Texture2D" uid="uid://brgywidi7ps0q" path="res://assets/cards/textures/sprites/blank-card.png" id="4_7xkir"]
+[ext_resource type="Script" path="res://assets/player/scripts/card_deck.gd" id="5_onalw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_417ga"]
 size = Vector2(2560, 400)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iwwg5"]
 size = Vector2(2560, 400)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l76p3"]
+size = Vector2(280, 362.5)
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -88,3 +93,35 @@ group_name = "played"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayZoneUI/Area2D"]
 shape = SubResource("RectangleShape2D_iwwg5")
+
+[node name="CardDeckUI" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.83
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CardDeckUI"]
+layout_mode = 1
+offset_right = 250.0
+offset_bottom = 350.0
+mouse_filter = 2
+texture = ExtResource("4_7xkir")
+
+[node name="Area2D" type="Area2D" parent="CardDeckUI" node_paths=PackedStringArray("card_container", "texture", "parent")]
+z_index = -100
+script = ExtResource("5_onalw")
+card_container = NodePath("../../CardHandUI/CardContainer")
+texture = NodePath("../TextureRect")
+parent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardDeckUI/Area2D"]
+position = Vector2(125, 175)
+shape = SubResource("RectangleShape2D_l76p3")
+
+[connection signal="input_event" from="CardDeckUI/Area2D" to="CardDeckUI/Area2D" method="_on_input_event"]
