@@ -25,6 +25,7 @@ func _ready() -> void:
 			
 		var node_data = json.get_data()
 		selected_hand.append(node_data)
+		print(selected_hand)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

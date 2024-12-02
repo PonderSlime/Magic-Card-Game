@@ -4,6 +4,9 @@ var opponent_start_health = 20
 @onready var opponent_health = opponent_start_health
 var enemy_hand = []
 
+func _ready() -> void:
+	enemy_hand = Globals.selected_hand
+
 func opponent_turn():
 	var card_data = get_random_card()
 	SignalBus.card_played.emit(card_data, "opponent")

@@ -127,4 +127,9 @@ parent = NodePath("..")
 position = Vector2(125, 175)
 shape = SubResource("RectangleShape2D_l76p3")
 
+[node name="Player HealthBar" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="input_event" from="CardDeckUI/Area2D" to="CardDeckUI/Area2D" method="_on_input_event"]

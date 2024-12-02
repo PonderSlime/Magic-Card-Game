@@ -70,6 +70,8 @@ func add_new_card(position: Vector2):
 	card_instance.add_to_group("hand")
 	
 func add_card(card: Node2D):
+	if card.get_parent():  # Check if the card already has a parent
+		hand_container.remove_child(card)
 	hand_container.add_child(card)
 	card.hand_container = self
 	var tween = create_tween()
