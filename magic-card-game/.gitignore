@@ -2,3 +2,4 @@
 .godot/
 /android/
 godot_super-wakatime/
+*.import
