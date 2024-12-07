@@ -6,12 +6,7 @@ var cardpos = Vector2(0,0)
 var screen_center
 var cardrot
 var cardsca
-func _ready() -> void:
-	pass
-	
-func _process(delta: float) -> void:
-	pass
-	
+
 func set_card_data(name: String, texture: Texture2D, card_position: Vector2, card_scale: float, card_rotation: float):
 	if texture_rect:
 		texture_rect.texture = texture

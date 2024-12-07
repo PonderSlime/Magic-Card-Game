@@ -1,0 +1,129 @@
+[gd_scene load_steps=16 format=3 uid="uid://472djrlcpujy"]
+
+[ext_resource type="Texture2D" uid="uid://de2qyqi50dlym" path="res://assets/player/sprites/hooded_wizard_spritesheet.png" id="1_6a6n6"]
+[ext_resource type="Script" path="res://assets/player/scripts/player_character.gd" id="1_qpn06"]
+
+[sub_resource type="Animation" id="Animation_pnb8c"]
+resource_name = "player_idle"
+length = 2.5
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 24]
+}
+
+[sub_resource type="Animation" id="Animation_vruru"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [25]
+}
+
+[sub_resource type="Animation" id="Animation_o237y"]
+resource_name = "player_gather_spell"
+length = 2.2
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [25, 46]
+}
+
+[sub_resource type="Animation" id="Animation_7xiu4"]
+resource_name = "player_flick_spell"
+length = 0.8
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [50, 57]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_to535"]
+_data = {
+"RESET": SubResource("Animation_vruru"),
+"player_flick_spell": SubResource("Animation_7xiu4"),
+"player_gather_spell": SubResource("Animation_o237y"),
+"player_idle": SubResource("Animation_pnb8c")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cf7eq"]
+animation = &"player_flick_spell"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bvhff"]
+animation = &"player_gather_spell"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4v3ve"]
+animation = &"player_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y7ays"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1iyon"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hy5d7"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8fg7m"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xrwug"]
+states/player_flick_spell/node = SubResource("AnimationNodeAnimation_cf7eq")
+states/player_flick_spell/position = Vector2(626, -45)
+states/player_gather_spell/node = SubResource("AnimationNodeAnimation_bvhff")
+states/player_gather_spell/position = Vector2(370, -57)
+states/player_idle/node = SubResource("AnimationNodeAnimation_4v3ve")
+states/player_idle/position = Vector2(475, 100)
+transitions = ["Start", "player_idle", SubResource("AnimationNodeStateMachineTransition_y7ays"), "player_idle", "player_gather_spell", SubResource("AnimationNodeStateMachineTransition_1iyon"), "player_gather_spell", "player_flick_spell", SubResource("AnimationNodeStateMachineTransition_hy5d7"), "player_flick_spell", "player_idle", SubResource("AnimationNodeStateMachineTransition_8fg7m")]
+graph_offset = Vector2(50, -96)
+
+[node name="PlayerAnimations" type="Node2D"]
+script = ExtResource("1_qpn06")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("1_6a6n6")
+hframes = 25
+vframes = 3
+frame = 25
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_to535")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_xrwug")
+anim_player = NodePath("../AnimationPlayer")

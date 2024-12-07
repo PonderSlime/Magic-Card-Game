@@ -6,7 +6,7 @@ extends Node2D
 @export var scale_diff: float = 1.1
 @export var card_overlay: PackedScene = preload("res://assets/cards/globals/card_overlay.tscn")
 @onready var card = $Card
-@onready var card_label = $Card/Label
+@onready var card_label = $Content/Label
 @export var remove_threshold: float = 500.0
 var hand_container: Node = null
 

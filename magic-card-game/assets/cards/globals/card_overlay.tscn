@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d38q36j88ykhh"]
 
 [ext_resource type="Script" path="res://assets/cards/globals/card_overlay.gd" id="1_5y07j"]
-[ext_resource type="Texture2D" uid="uid://5k8rltvhadbj" path="res://assets/cards/textures/pngegg.png" id="1_sy331"]
+[ext_resource type="Texture2D" uid="uid://d3xvt8t3jvn6k" path="res://assets/cards/textures/pngegg.png" id="1_sy331"]
 
 [node name="CardOverlay" type="CanvasLayer"]
 script = ExtResource("1_5y07j")

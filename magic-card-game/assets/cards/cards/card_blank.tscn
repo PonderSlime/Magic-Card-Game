@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://biyfpi4e4cjnf"]
 
 [ext_resource type="Script" path="res://assets/cards/scripts/card_default.gd" id="1_ya4gb"]
-[ext_resource type="Texture2D" uid="uid://brgywidi7ps0q" path="res://assets/cards/textures/sprites/blank-card.png" id="2_eywwk"]
+[ext_resource type="Texture2D" uid="uid://2x8gjoqdoeo7" path="res://assets/cards/textures/sprites/default_blank_card.png" id="2_ai8v0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_li0w5"]
 size = Vector2(280, 362.5)
@@ -14,16 +14,18 @@ shape = SubResource("RectangleShape2D_li0w5")
 debug_color = Color(0, 0.6, 0.701961, 0.811765)
 
 [node name="Card" type="Sprite2D" parent="."]
-texture = ExtResource("2_eywwk")
+texture = ExtResource("2_ai8v0")
 
-[node name="Label" type="Label" parent="Card"]
+[node name="Content" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Content"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -125.0
 offset_top = -175.0
-offset_right = -125.0
-offset_bottom = -175.0
+offset_right = -124.0
+offset_bottom = -153.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 15

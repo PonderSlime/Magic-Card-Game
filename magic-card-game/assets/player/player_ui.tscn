@@ -1,15 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://yt1s5nj322wv"]
+[gd_scene load_steps=16 format=3 uid="uid://yt1s5nj322wv"]
 
 [ext_resource type="Script" path="res://assets/player/scripts/played_cards_controller.gd" id="1_11a3g"]
 [ext_resource type="Script" path="res://assets/player/scripts/card_hand_ui.gd" id="1_lu8ei"]
 [ext_resource type="Script" path="res://assets/player/scripts/snap_zone.gd" id="2_ipq15"]
 [ext_resource type="Script" path="res://assets/player/scripts/play_zone_ui.gd" id="3_67ldf"]
-[ext_resource type="Texture2D" uid="uid://brgywidi7ps0q" path="res://assets/cards/textures/sprites/blank-card.png" id="4_7xkir"]
+[ext_resource type="Texture2D" uid="uid://dt4nmnlnityo6" path="res://assets/cards/textures/sprites/blank-card.png" id="4_7xkir"]
 [ext_resource type="Script" path="res://assets/player/scripts/card_deck.gd" id="5_onalw"]
-[ext_resource type="Texture2D" uid="uid://c2sjrjh2gch3f" path="res://assets/player/sprites/health_bar_empty.png" id="7_c6m8v"]
-[ext_resource type="Texture2D" uid="uid://buu6jroxsm5a2" path="res://assets/player/sprites/health_bar_overlay.png" id="8_mmnyh"]
-[ext_resource type="Texture2D" uid="uid://d0u4jxcfguwh2" path="res://assets/player/sprites/health_bar_full.png" id="9_hduka"]
+[ext_resource type="Texture2D" uid="uid://e2f6s7n6lp4r" path="res://assets/player/sprites/health_bar_empty.png" id="7_c6m8v"]
+[ext_resource type="Texture2D" uid="uid://b66l726na2a7k" path="res://assets/player/sprites/health_bar_overlay.png" id="8_mmnyh"]
+[ext_resource type="Texture2D" uid="uid://dxumafo38f1p5" path="res://assets/player/sprites/health_bar_full.png" id="9_hduka"]
 [ext_resource type="Script" path="res://assets/player/scripts/health_bar.gd" id="10_nq5t1"]
+[ext_resource type="Texture2D" uid="uid://cjd2vp1w10ysg" path="res://assets/core/sprites/end_turn_button.png" id="11_hupfg"]
+[ext_resource type="Script" path="res://assets/player/scripts/end_turn_button.gd" id="12_qm28i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_417ga"]
 size = Vector2(2560, 400)
@@ -131,7 +133,7 @@ parent = NodePath("..")
 position = Vector2(125, 175)
 shape = SubResource("RectangleShape2D_l76p3")
 
-[node name="Player HealthBar" type="Control" parent="."]
+[node name="PlayerHealthBar" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 0
 offset_left = 40.0
@@ -139,7 +141,7 @@ offset_top = 40.0
 offset_right = 340.0
 offset_bottom = 340.0
 
-[node name="HealthBar" type="TextureProgressBar" parent="Player HealthBar"]
+[node name="HealthBar" type="TextureProgressBar" parent="PlayerHealthBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -154,4 +156,25 @@ texture_over = ExtResource("8_mmnyh")
 texture_progress = ExtResource("9_hduka")
 script = ExtResource("10_nq5t1")
 
+[node name="EndTurnButton" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.8
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="TextureButton" type="TextureButton" parent="EndTurnButton"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("11_hupfg")
+script = ExtResource("12_qm28i")
+
 [connection signal="input_event" from="CardDeckUI/Area2D" to="CardDeckUI/Area2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="EndTurnButton/TextureButton" to="EndTurnButton/TextureButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="EndTurnButton/TextureButton" to="EndTurnButton/TextureButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="EndTurnButton/TextureButton" to="EndTurnButton/TextureButton" method="_on_pressed"]

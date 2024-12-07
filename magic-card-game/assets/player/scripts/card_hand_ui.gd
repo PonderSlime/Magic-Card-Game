@@ -14,7 +14,7 @@ var max_card_count = Globals.max_card_count
 @export var base_snap_zone_height: float = 700
 @export var snap_zone_padding: float = 20
 
-@onready var hand_container = self     # The node holding all the cards
+@onready var hand_container = self
 var center
 var cards: Array = []
 var radius

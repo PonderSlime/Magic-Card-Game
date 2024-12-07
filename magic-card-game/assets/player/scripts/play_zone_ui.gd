@@ -9,14 +9,13 @@ extends Control
 var card_name: String
 
 var cards: Array = []
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:	
 	var play_area_width = max(base_snap_zone_width, cards.size() * 100 + snap_zone_padding)
 	var play_area_height = base_snap_zone_height
 	
 	if snap_zone_shape is RectangleShape2D:
 		snap_zone_shape.extents = Vector2(play_area_width / 2, play_area_height / 2)
-
 
 func add_card(card: Node2D) -> void:
 	cards.append(card)
@@ -32,6 +31,3 @@ func add_card(card: Node2D) -> void:
 			card.queue_free()
 			return
 	print("Error: Card data not found for:", card_data.data_name)
-	#emit_signal("card_played", card.name)
-	
-	
