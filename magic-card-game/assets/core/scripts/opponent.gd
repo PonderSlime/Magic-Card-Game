@@ -1,7 +1,7 @@
 extends Node
 
-var opponent_start_health = 20
-@onready var opponent_health = opponent_start_health
+var opponent_start_health: float = 20
+@onready var opponent_health: float = opponent_start_health
 var enemy_hand = []
 
 func _ready() -> void:

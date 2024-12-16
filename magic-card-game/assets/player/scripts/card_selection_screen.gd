@@ -24,7 +24,6 @@ func _on_card_button_pressed(card_data):
 	if card_data in Globals.selected_hand:
 		Globals.selected_hand.erase(card_data)
 		print(card_data["name"], " removed from selection.")
-		#_on_remove_card_pressed(card_data, card_data)
 	else:
 		if Globals.selected_hand.size() < 5:
 			Globals.selected_hand.append(card_data)
@@ -60,7 +59,6 @@ func confirm_selection():
 		var path = card_data["scene_path"]
 		var card = load(path)
 		var card_instance = card.instantiate()
-		#add_card_to_hand(card_instance)
 	print("Game hand populated with selected cards.")
 	save_game()
 	

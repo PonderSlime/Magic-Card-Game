@@ -49,7 +49,7 @@ func load_selected_cards():
 func get_random_card() -> CardData:
 	if Globals.selected_hand.size() == 0:
 		print("No cards available in the selected hand!")
-		return null  # Or an empty dictionary: {}
+		return null
 	var random_index = randi() % Globals.selected_hand.size()
 	var card_data = Globals.selected_hand[random_index]
 	return CardData.new(card_data["name"], card_data["data_name"],card_data["scene_path"], 2, card_data["description"])
@@ -70,7 +70,7 @@ func add_new_card(position: Vector2):
 	card_instance.add_to_group("hand")
 	
 func add_card(card: Node2D):
-	if card.get_parent():  # Check if the card already has a parent
+	if card.get_parent():
 		hand_container.remove_child(card)
 	hand_container.add_child(card)
 	card.hand_container = self
@@ -113,7 +113,7 @@ func update_hand_layout():
 		tween.parallel().tween_property(card, "rotation_degrees", target_rotation_degrees, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		
 		card.z_index = i
-		card.set_card_data("Card",) #+ str(i + 1), )
+		card.set_card_data("Card",)
 
 func update_snap_zone():
 	if not snap_zone:

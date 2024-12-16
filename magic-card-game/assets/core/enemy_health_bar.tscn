@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://y4mlhhebsur6"]
+
+[ext_resource type="Script" path="res://assets/core/scripts/enemy_health_bar.gd" id="1_0crwf"]
+[ext_resource type="Texture2D" uid="uid://by8hqjtc4rkrw" path="res://assets/core/sprites/enemy_health_bar_empty_bg.png" id="1_6w51r"]
+[ext_resource type="Texture2D" uid="uid://dt1hvt8ud1pl3" path="res://assets/core/sprites/enemy_health_bar_overlay.png" id="2_3qous"]
+[ext_resource type="Texture2D" uid="uid://b7rv73y2rwdqn" path="res://assets/core/sprites/enemy_health_bar_full.png" id="2_ww5vo"]
+[ext_resource type="Texture2D" uid="uid://q1brpgpkopdt" path="res://assets/core/sprites/enemy_health_bar_full_status_indicator.png" id="4_1g7l8"]
+
+[node name="EnemyHealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 160.0
+script = ExtResource("1_0crwf")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+z_index = 1
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 160.0
+value = 50.0
+nine_patch_stretch = true
+texture_over = ExtResource("2_3qous")
+texture_progress = ExtResource("2_ww5vo")
+
+[node name="StatusBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 160.0
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_6w51r")
+texture_progress = ExtResource("4_1g7l8")
