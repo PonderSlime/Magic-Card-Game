@@ -14,4 +14,3 @@ func _process(delta: float) -> void:
 		player_mana += 0.01
 	else:
 		return
-	print(player_mana)

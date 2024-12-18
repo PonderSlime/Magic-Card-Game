@@ -10,7 +10,6 @@ func _ready() -> void:
 func _on_card_played(card_data: CardData, who: String):
 	if card_data.data_name == "lightning_card":
 		if who == "player":
-			print("Zap!!! you played ", card_data.data_name, "!")
 			Opponent.opponent_health -= 8
 			Player.player_mana -= 9
 			print("Your opponent's health is now at: ", Opponent.opponent_health)
@@ -22,7 +21,6 @@ func _on_card_played(card_data: CardData, who: String):
 	
 	elif card_data.data_name == "fire_card":
 		if who == "player":
-			print("Yay! Fire! You played ", card_data.data_name, "!")
 			Opponent.opponent_health -= 2
 			Player.player_mana -= 1
 			

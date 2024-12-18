@@ -74,7 +74,6 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			var distance_moved = drag_start_position.distance_to(get_global_mouse_position())
 			if distance_moved < drag_threshold:
 				show_overlay()
-				print("showing!")
 			drag_start_position = Vector2.ZERO
 			drag_offset = Vector2.ZERO
 	elif event is InputEventMouseMotion and is_dragging:
@@ -101,8 +100,6 @@ func _process(delta: float) -> void:
 		is_dragging = false
 		
 func show_overlay():
-	print("overlay!")
 	var overlay_instance = card_overlay.instantiate()
 	get_tree().root.add_child(overlay_instance)
-	print(global_position)
 	overlay_instance.set_card_data(card_name, card_texture, global_position, card.scale.x, rotation)

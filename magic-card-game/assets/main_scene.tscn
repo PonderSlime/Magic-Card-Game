@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://c65fet52krchr"]
+[gd_scene load_steps=9 format=4 uid="uid://c65fet52krchr"]
 
 [ext_resource type="PackedScene" uid="uid://yt1s5nj322wv" path="res://assets/player/player_ui.tscn" id="1_s2v4w"]
 [ext_resource type="Texture2D" uid="uid://biycvnt7wbjd2" path="res://assets/core/sprites/mossy_dungeon.png" id="2_0anqt"]
 [ext_resource type="PackedScene" uid="uid://472djrlcpujy" path="res://assets/player/player_character.tscn" id="3_n5d3g"]
 [ext_resource type="Texture2D" uid="uid://jlk1qsuy2o6c" path="res://assets/core/sprites/mossy_dungeon_tiles.png" id="4_q84d8"]
 [ext_resource type="PackedScene" uid="uid://y4mlhhebsur6" path="res://assets/core/enemy_health_bar.tscn" id="5_mxf41"]
+[ext_resource type="PackedScene" uid="uid://ca6udpvb1w1f1" path="res://assets/menu/pause_menu.tscn" id="6_gynsu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3yo1"]
 texture = ExtResource("4_q84d8")
@@ -312,3 +313,6 @@ anchor_right = 0.5
 offset_left = -480.0
 offset_right = 480.0
 grow_horizontal = 2
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_gynsu")]
+layout_mode = 1

@@ -61,7 +61,7 @@ func confirm_selection():
 		var card_instance = card.instantiate()
 	print("Game hand populated with selected cards.")
 	save_game()
-	
+	get_tree().change_scene_to_file("res://assets/menu/main_menu.tscn")
 func save_game():
 	var saveFile = FileAccess.open("user://selected_cards.save", FileAccess.WRITE)
 	if(FileAccess.get_open_error() != OK):

@@ -18,7 +18,3 @@ func get_random_card() -> CardData:
 	var random_index = randi() % enemy_hand.size()
 	var card_data = enemy_hand[random_index]
 	return CardData.new(card_data["name"], card_data["data_name"],card_data["scene_path"], 2, card_data["description"])
-
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		opponent_turn()
