@@ -3,12 +3,15 @@ extends Control
 @onready var card_selection_grid = $CardSelection/ScrollContainer/GridContainer
 @onready var selected_cards_container = $GridContainer
 
+@onready var bg_music_player_1: AudioStreamPlayer = $BackGroundMusicPlayer1
+	
 func _ready():
 	populate_selection_grid()
-			
+	
 	print("hand: ", Globals.selected_hand)
 	update_selected_cards_display()
-
+	
+	bg_music_player_1.play()
 func populate_selection_grid():
 	for card_data in Globals.all_cards:
 		var card_preview = TextureButton.new()

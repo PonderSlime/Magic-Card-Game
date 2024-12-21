@@ -68,6 +68,7 @@ func add_new_card(position: Vector2):
 	card_instance.modulate = Color(0,0,0,0)
 	add_card(card_instance)
 	card_instance.add_to_group("hand")
+	SignalBus.added_card.emit()
 	
 func add_card(card: Node2D):
 	if card.get_parent():

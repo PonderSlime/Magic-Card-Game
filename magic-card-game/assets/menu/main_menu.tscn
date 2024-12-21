@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8cbrnxipusoo"]
+[gd_scene load_steps=5 format=3 uid="uid://b8cbrnxipusoo"]
 
 [ext_resource type="FontFile" uid="uid://b128bechdjng2" path="res://assets/font/Anchovy/PC/Anchovy.ttf" id="1_ks3c7"]
 [ext_resource type="Script" path="res://assets/menu/scripts/main_menu.gd" id="1_oxxf3"]
 [ext_resource type="Texture2D" uid="uid://biycvnt7wbjd2" path="res://assets/core/sprites/mossy_dungeon.png" id="2_sjx0c"]
+[ext_resource type="AudioStream" uid="uid://f15s1a4o4me4" path="res://assets/core/sounds/music/pixify-230092.mp3" id="4_xauae"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -130,6 +131,10 @@ mouse_filter = 2
 texture = ExtResource("2_sjx0c")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="BackGroundMusicPlayer1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xauae")
+parameters/looping = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CardSelectionButton" to="." method="_on_card_selection_button_pressed"]

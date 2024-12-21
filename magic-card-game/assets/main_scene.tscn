@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://c65fet52krchr"]
+[gd_scene load_steps=12 format=4 uid="uid://c65fet52krchr"]
 
 [ext_resource type="PackedScene" uid="uid://yt1s5nj322wv" path="res://assets/player/player_ui.tscn" id="1_s2v4w"]
 [ext_resource type="Texture2D" uid="uid://biycvnt7wbjd2" path="res://assets/core/sprites/mossy_dungeon.png" id="2_0anqt"]
@@ -6,8 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://jlk1qsuy2o6c" path="res://assets/core/sprites/mossy_dungeon_tiles.png" id="4_q84d8"]
 [ext_resource type="PackedScene" uid="uid://y4mlhhebsur6" path="res://assets/core/enemy_health_bar.tscn" id="5_mxf41"]
 [ext_resource type="PackedScene" uid="uid://ca6udpvb1w1f1" path="res://assets/menu/pause_menu.tscn" id="6_gynsu"]
+[ext_resource type="PackedScene" uid="uid://bljoxfgkkmjl7" path="res://assets/core/sound_effects.tscn" id="7_itx5c"]
+[ext_resource type="PackedScene" uid="uid://ce55bcp1h5lly" path="res://assets/menu/lose_menu.tscn" id="7_rjaxp"]
+[ext_resource type="PackedScene" uid="uid://c4e182ljjjb6g" path="res://assets/menu/win_menu.tscn" id="8_02hdx"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3yo1"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nve0a"]
 texture = ExtResource("4_q84d8")
 0:0/0 = 0
 1:0/0 = 0
@@ -267,7 +270,7 @@ texture = ExtResource("4_q84d8")
 15:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_l46ca"]
-sources/1 = SubResource("TileSetAtlasSource_a3yo1")
+sources/1 = SubResource("TileSetAtlasSource_nve0a")
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -278,10 +281,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="CardHandUI" parent="." node_paths=PackedStringArray("player_character", "enemy_health_bar") instance=ExtResource("1_s2v4w")]
+[node name="CardHandUI" parent="." node_paths=PackedStringArray("player_character", "enemy_health_bar", "sound_player") instance=ExtResource("1_s2v4w")]
 layout_mode = 1
 player_character = NodePath("../PlayerAnimations")
 enemy_health_bar = NodePath("../EnemyHealthBar")
+sound_player = NodePath("../SoundEffects")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -100
@@ -315,4 +319,14 @@ offset_right = 480.0
 grow_horizontal = 2
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_gynsu")]
+visible = false
+layout_mode = 1
+
+[node name="LoseMenu" parent="." instance=ExtResource("7_rjaxp")]
+layout_mode = 1
+
+[node name="WinMenu" parent="." instance=ExtResource("8_02hdx")]
+layout_mode = 1
+
+[node name="SoundEffects" parent="." instance=ExtResource("7_itx5c")]
 layout_mode = 1

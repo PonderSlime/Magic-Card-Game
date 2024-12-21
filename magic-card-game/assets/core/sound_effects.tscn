@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bljoxfgkkmjl7"]
+
+[ext_resource type="Script" path="res://assets/core/scripts/sound_effects.gd" id="1_xl55j"]
+[ext_resource type="AudioStream" uid="uid://dy5qmw64kuhe1" path="res://assets/core/sounds/music/flat-8-bit-gaming-music-instrumental-211547.mp3" id="2_sfitq"]
+
+[node name="SoundEffects" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_xl55j")
+
+[node name="StreamPlayer1" type="AudioStreamPlayer" parent="."]
+
+[node name="StreamPlayer2" type="AudioStreamPlayer" parent="."]
+
+[node name="BackGroundMusicPlayer1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sfitq")
+parameters/looping = true

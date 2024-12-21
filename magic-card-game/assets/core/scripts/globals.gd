@@ -6,7 +6,6 @@ var max_card_count:int = 10
 var selected_hand = []
 
 var all_cards: Array = [
-	{"scene_path": "res://assets/cards/cards/card_blank.tscn", "name": "Default Card", "data_name": "default_card", "texture_name": "default_blank_card", "description": "default card"},
 	{"scene_path": "res://assets/cards/cards/card_fire.tscn", "name": "Fire Card", "data_name": "fire_card", "texture_name": "fire_card", "description": "basic fire card"},
 	{"scene_path": "res://assets/cards/cards/card_lightning.tscn", "name": "Lightning Card", "data_name": "lightning_card", "texture_name": "lightning_card", "description": "lightning card"},
 ]
