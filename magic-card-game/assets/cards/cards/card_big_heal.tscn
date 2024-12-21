@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccw06ih174xnl"]
+
+[ext_resource type="Script" path="res://assets/cards/scripts/card_default.gd" id="1_sayk3"]
+[ext_resource type="Texture2D" uid="uid://syqwld30p1eh" path="res://assets/cards/textures/sprites/big_heal_card.png" id="2_xjduo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_li0w5"]
+size = Vector2(280, 362.5)
+
+[node name="CardBlank" type="Area2D"]
+script = ExtResource("1_sayk3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_li0w5")
+debug_color = Color(0, 0.6, 0.701961, 0.811765)
+
+[node name="Card" type="Sprite2D" parent="."]
+texture = ExtResource("2_xjduo")
+
+[node name="Content" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Content"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -175.0
+offset_right = -124.0
+offset_bottom = -153.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 15
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

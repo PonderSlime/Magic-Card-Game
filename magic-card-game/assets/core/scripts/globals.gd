@@ -8,6 +8,8 @@ var selected_hand = []
 var all_cards: Array = [
 	{"scene_path": "res://assets/cards/cards/card_fire.tscn", "name": "Fire Card", "data_name": "fire_card", "texture_name": "fire_card", "description": "basic fire card"},
 	{"scene_path": "res://assets/cards/cards/card_lightning.tscn", "name": "Lightning Card", "data_name": "lightning_card", "texture_name": "lightning_card", "description": "lightning card"},
+	{"scene_path": "res://assets/cards/cards/card_heal.tscn", "name": "Health Card", "data_name": "heal_card", "texture_name": "heal_card", "description": "basic healing card"},
+	{"scene_path": "res://assets/cards/cards/card_big_heal.tscn", "name": "Big Health Card", "data_name": "big_heal_card", "texture_name": "big_heal_card", "description": "boosted healing card"},
 ]
 
 func _ready() -> void:

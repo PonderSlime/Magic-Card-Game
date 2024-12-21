@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://yt1s5nj322wv"]
+[gd_scene load_steps=20 format=3 uid="uid://yt1s5nj322wv"]
 
 [ext_resource type="Script" path="res://assets/player/scripts/played_cards_controller.gd" id="1_11a3g"]
 [ext_resource type="Script" path="res://assets/player/scripts/card_hand_ui.gd" id="1_lu8ei"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://cjd2vp1w10ysg" path="res://assets/core/sprites/end_turn_button.png" id="11_hupfg"]
 [ext_resource type="Script" path="res://assets/player/scripts/end_turn_button.gd" id="12_qm28i"]
 [ext_resource type="PackedScene" uid="uid://dglmlett0fut1" path="res://assets/player/player_mana_bar.tscn" id="14_4gbse"]
+[ext_resource type="FontFile" uid="uid://b128bechdjng2" path="res://assets/font/Anchovy/PC/Anchovy.ttf" id="15_sj5rj"]
+[ext_resource type="Script" path="res://assets/player/scripts/player_turn_label.gd" id="16_rntb4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_417ga"]
 size = Vector2(2560, 400)
@@ -199,6 +201,21 @@ anchor_bottom = 0.5
 offset_top = -160.0
 offset_bottom = 160.0
 grow_vertical = 2
+
+[node name="PlayerTurnLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("15_sj5rj")
+theme_override_font_sizes/font_size = 64
+text = "Player Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("16_rntb4")
 
 [connection signal="input_event" from="CardDeckUI/Area2D" to="CardDeckUI/Area2D" method="_on_input_event"]
 [connection signal="mouse_entered" from="EndTurnButton/TextureButton" to="EndTurnButton/TextureButton" method="_on_mouse_entered"]

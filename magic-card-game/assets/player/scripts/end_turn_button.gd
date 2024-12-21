@@ -22,3 +22,4 @@ func _on_mouse_exited() -> void:
 func _on_pressed() -> void:
 	Opponent.opponent_turn()
 	SignalBus.cards_dealt.emit()
+	SignalBus.ended_enemy_turn.emit()
